@@ -23,8 +23,8 @@ namespace hoi4_launcher
         string folderLocation = "";
         string exeLocation = "";
         IniFile ini;
-        Dictionary<string, string> mods;
-        Dictionary<string, string> enabledMods;
+        //Dictionary<string, string> mods;
+        //Dictionary<string, string> enabledMods;
         List<dlc> dlcs;
 
         public Form1()
@@ -68,9 +68,6 @@ namespace hoi4_launcher
                 getExeLoc(); // file exists, but location not set
             }
 
-            mods = new Dictionary<string, string>();
-            enabledMods = new Dictionary<string, string>();
-
             loadMods(false);
 
             loadPlayset();
@@ -113,16 +110,14 @@ namespace hoi4_launcher
 
             if (resetModList)
             {
-                mods = new Dictionary<string, string>();
-                enabledMods = new Dictionary<string, string>();
+                allMods_listbox.Items.Clear();
+                playset_listbox.Items.Clear();
             }
 
             foreach (string fName in ugcFiles)
             {
-                mods[getModName(fName).Trim('"')] = fName;
+                allMods_listbox.Items.Add(new mod(getModName(fName), fName));
             }
-
-            reloadSelectionBox();
         }
 
         public bool contains(string checkingAgainst, string checkingFor)
@@ -131,33 +126,61 @@ namespace hoi4_launcher
         }
 
         public void reloadSelectionBox(string filter = "")
-        {
-            allMods_listbox.Items.Clear();
-            playset_listbox.Items.Clear();
+        { 
+            List<mod> enabledMods = new List<mod>();
+            List<mod> allMods = new List<mod>();
 
-            Dictionary<string, string>[] dicts = { mods, enabledMods };
+            ListBox[] x = { allMods_listbox, playset_listbox };
 
-            foreach (Dictionary<string, string> dict in dicts)
+            foreach (ListBox l in x)
             {
-                if (dict == enabledMods) { 
-                    var x = 1;
-                }
-                foreach (KeyValuePair<string, string> kvp in dict)
+                foreach (object o in l.Items)
                 {
-                    ListBox lb = (dict == mods) ? allMods_listbox : playset_listbox;
+                    bool isAllMods = (l == allMods_listbox);
+
+                    mod thisMod = (mod)o;
+
 
                     if (filter == "")
                     {
-                        lb.Items.Add(kvp.Key);
+                        if (isAllMods)
+                        {
+                            allMods.Add((mod)o);
+                        }
+                        else
+                        {
+                            enabledMods.Add((mod)o);
+                        }
                     }
                     else
                     {
-                        if (contains(kvp.Key, filter))
+                        if (contains(thisMod.myModName, filter))
                         {
-                            lb.Items.Add(kvp.Key);
+                            if (isAllMods)
+                            {
+                                allMods.Add((mod)o);
+                            }
+                            else
+                            {
+                                enabledMods.Add((mod)o);
+                            }
                         }
                     }
                 }
+            }
+
+            allMods_listbox.Items.Clear();
+            playset_listbox.Items.Clear();
+
+            loadListBox(enabledMods, playset_listbox);
+            loadListBox(allMods, allMods_listbox);
+        }
+
+        public void loadListBox(List<mod> modsToLoad, ListBox listBox)
+        {
+            foreach (mod m in modsToLoad)
+            {
+                listBox.Items.Add(m);
             }
         }
 
@@ -176,7 +199,7 @@ namespace hoi4_launcher
 
                 if (contains(line, "name") && !inDep)
                 {
-                    return line.Split('=')[1].Trim();
+                    return line.Split('=')[1].Trim().Replace("\"", "");
                 }
             }
 
@@ -199,8 +222,8 @@ namespace hoi4_launcher
 
             try
             {
-                string toAdd = allMods_listbox.SelectedItem.ToString();
-                enabledMods.Add(toAdd, mods[toAdd]);
+                object toAdd = allMods_listbox.SelectedItem;
+                playset_listbox.Items.Add(toAdd);
 
                 reloadSelectionBox();
 
@@ -216,8 +239,8 @@ namespace hoi4_launcher
         {
             if (playset_listbox.SelectedItem == null) { return; }
 
-            string toRemove = playset_listbox.SelectedItem.ToString();
-            enabledMods.Remove(toRemove);
+            object toRemove = playset_listbox.SelectedItem;
+            playset_listbox.Items.Remove(toRemove);
 
             reloadSelectionBox();
 
@@ -226,7 +249,8 @@ namespace hoi4_launcher
 
         private void remove_all_mods_button_Click(object sender, EventArgs e)
         {
-            enabledMods = new Dictionary<string, string>();
+            playset_listbox.Items.Clear();
+
             reloadSelectionBox();
 
             savePlayset();
@@ -272,7 +296,13 @@ namespace hoi4_launcher
                 {
                     try
                     {
-                        enabledMods.Add(line, mods[line]);
+                        char[] x = "##~~##".ToArray<char>();
+
+                        string[] s = line.Split(x);
+
+                        object referenceObj = new mod(s[0], s[6]);
+
+                        playset_listbox.Items.Add(referenceObj);
                     }
                     catch
                     {
@@ -292,9 +322,9 @@ namespace hoi4_launcher
 
             List<string> ls = new List<string>();
 
-            foreach (KeyValuePair<string, string> kvp in enabledMods)
+            foreach (mod mod in playset_listbox.Items)
             {
-                ls.Add(kvp.Key);
+                ls.Add($"{mod.myModName}##~~##{mod.myLocation}");
             }
 
             File.WriteAllLines("settings/.playset", ls);
@@ -384,9 +414,9 @@ namespace hoi4_launcher
                 }
             }
 
-            foreach (KeyValuePair<string, string> kvp in enabledMods)
+            foreach (mod mod in playset_listbox.Items)
             {
-                enabledModsStringBuilder += $"\"mod/{Path.GetFileName(kvp.Value)}\",";
+                enabledModsStringBuilder += $"{mod.myLocation},";
             }
 
             try
