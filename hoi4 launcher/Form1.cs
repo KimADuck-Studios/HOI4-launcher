@@ -92,7 +92,7 @@ namespace hoi4_launcher
             loadMods(true);
         }
 
-        public void loadMods(bool resetModList)
+        public void loadMods(bool resetModList = true)
         {
             // get all files in mod folder
 
@@ -213,6 +213,8 @@ namespace hoi4_launcher
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
+            loadMods();
+
             reloadSelectionBox(filter_mods_textbox.Text);
         }
 
@@ -416,7 +418,7 @@ namespace hoi4_launcher
 
             foreach (mod mod in playset_listbox.Items)
             {
-                enabledModsStringBuilder += $"{mod.myLocation},";
+                enabledModsStringBuilder += $"\"{mod.myLocation}\",";
             }
 
             try

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace hoi4_launcher
 {
@@ -14,7 +15,8 @@ namespace hoi4_launcher
         public mod(string ModName, string location)
         {
             this.myModName = ModName;
-            this.myLocation = location;
+            string fName = Path.GetFileName(location);
+            this.myLocation = $"mod/{fName}";
         }
 
         public override string ToString()
