@@ -552,10 +552,7 @@ namespace hoi4_launcher
                 File.WriteAllLines($"settings/playsets/{playset_name_textbox.Text}.txt", vs);
                 loadPlaysets();
             }
-            catch
-            {
-
-            }
+            catch{}
         }
 
         private void load_playset_button_Click(object sender, EventArgs e)
@@ -570,9 +567,33 @@ namespace hoi4_launcher
                     enabled_mods_listbox.Items.Add(mod);
                 }
 
+            }catch{}
+        }
+
+        private void create_new_mod_button_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string modName = new_mod_name_textbox.Text;
+                string boiler = File.ReadAllText("settings/.modBoilerPlate");
+
+                string toWrite = boiler.Replace("MOD_NAME", modName);
+                string myfolderLocation = folderLocation.Replace("\\", "\\\\");
+
+                toWrite = toWrite.Replace("MOD_PATH", myfolderLocation + $"\\\\mod\\\\{modName}");
+
+                File.WriteAllText(myfolderLocation + $"/mod/{modName}.mod", toWrite);
+                Directory.CreateDirectory(myfolderLocation + $"/mod/{modName}");
+
+                File.WriteAllText(myfolderLocation + $"/mod/{modName}/descriptor.mod", toWrite);
+
+                new_mod_name_textbox.Text = "";
+
+                reloadSelectionBox();
             }
             catch
             {
+
             }
         }
     }
