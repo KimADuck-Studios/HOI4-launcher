@@ -30,7 +30,13 @@ namespace hoi4_launcher
         public Form1()
         {
             InitializeComponent();
+            // init();
+            loadPlaysets();
 
+        }
+
+        public void init()
+        {
             // gets location of the hoi4 folder
             if (File.Exists("settings/.ini"))
             {
@@ -498,6 +504,43 @@ namespace hoi4_launcher
             }
 
             saveDLC();
+        }
+
+        public void loadPlaysets()
+        {
+            string[] playsetFiles = null;
+
+            try
+            {
+                playsetFiles = Directory.GetFiles("settings/playsets/");
+
+                foreach (string fname in playsetFiles)
+                {
+                    string[] mods = File.ReadAllLines(fname);
+
+                    List<mod> modsList = new List<mod>();
+
+                    foreach (string line in mods)
+                    {
+                        char[] x = "##~~##".ToArray<char>();
+
+                        string[] s = line.Split(x);
+
+                        modsList.Add(new mod(s[0], s[6]));
+                    }
+
+                    HOI4_playset_selector_combobox.Items.Add(new playset(fname, modsList.ToArray()));
+                }
+            }
+            catch
+            {
+                Directory.CreateDirectory("settings/playsets/");
+            }
+        }
+
+        private void create_new_playset_button_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

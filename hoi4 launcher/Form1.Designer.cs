@@ -49,17 +49,22 @@ namespace hoi4_launcher
             this.launch_debug_button = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.HOI4_dlc_selection_panel = new System.Windows.Forms.Panel();
-            this.HOI4_all_dlc_listbox = new System.Windows.Forms.ListBox();
-            this.hoi4_enabled_dlc_listbox = new System.Windows.Forms.ListBox();
-            this.HOI4_add_dlc_button = new System.Windows.Forms.Button();
-            this.HOI4_remove_dlc_button = new System.Windows.Forms.Button();
-            this.HOI4_enable_all_dlc_button = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.HOI4_enable_all_dlc_button = new System.Windows.Forms.Button();
+            this.HOI4_remove_dlc_button = new System.Windows.Forms.Button();
+            this.HOI4_add_dlc_button = new System.Windows.Forms.Button();
+            this.hoi4_enabled_dlc_listbox = new System.Windows.Forms.ListBox();
+            this.HOI4_all_dlc_listbox = new System.Windows.Forms.ListBox();
+            this.HOI4_playset_selector_panel = new System.Windows.Forms.Panel();
+            this.HOI4_playset_selector_combobox = new System.Windows.Forms.ComboBox();
+            this.create_new_playset_button = new System.Windows.Forms.Button();
+            this.load_playset_button = new System.Windows.Forms.Button();
             this.setLocations_panel.SuspendLayout();
             this.mod_selection_panel.SuspendLayout();
             this.launch_panel.SuspendLayout();
             this.HOI4_dlc_selection_panel.SuspendLayout();
+            this.HOI4_playset_selector_panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // setLocations_panel
@@ -206,14 +211,14 @@ namespace hoi4_launcher
             this.launch_panel.Controls.Add(this.launch_debug_button);
             this.launch_panel.Location = new System.Drawing.Point(239, 320);
             this.launch_panel.Name = "launch_panel";
-            this.launch_panel.Size = new System.Drawing.Size(537, 100);
+            this.launch_panel.Size = new System.Drawing.Size(216, 100);
             this.launch_panel.TabIndex = 3;
             // 
             // launch_game_button
             // 
             this.launch_game_button.Location = new System.Drawing.Point(3, 3);
             this.launch_game_button.Name = "launch_game_button";
-            this.launch_game_button.Size = new System.Drawing.Size(212, 92);
+            this.launch_game_button.Size = new System.Drawing.Size(99, 92);
             this.launch_game_button.TabIndex = 5;
             this.launch_game_button.Text = "LAUNCH GAME";
             this.launch_game_button.UseVisualStyleBackColor = true;
@@ -221,9 +226,9 @@ namespace hoi4_launcher
             // 
             // launch_debug_button
             // 
-            this.launch_debug_button.Location = new System.Drawing.Point(320, 3);
+            this.launch_debug_button.Location = new System.Drawing.Point(112, 3);
             this.launch_debug_button.Name = "launch_debug_button";
-            this.launch_debug_button.Size = new System.Drawing.Size(212, 92);
+            this.launch_debug_button.Size = new System.Drawing.Size(99, 92);
             this.launch_debug_button.TabIndex = 4;
             this.launch_debug_button.Text = "LAUNCH DEBUG";
             this.launch_debug_button.UseVisualStyleBackColor = true;
@@ -248,41 +253,23 @@ namespace hoi4_launcher
             this.HOI4_dlc_selection_panel.Size = new System.Drawing.Size(220, 347);
             this.HOI4_dlc_selection_panel.TabIndex = 4;
             // 
-            // HOI4_all_dlc_listbox
+            // label4
             // 
-            this.HOI4_all_dlc_listbox.FormattingEnabled = true;
-            this.HOI4_all_dlc_listbox.Location = new System.Drawing.Point(2, 16);
-            this.HOI4_all_dlc_listbox.Name = "HOI4_all_dlc_listbox";
-            this.HOI4_all_dlc_listbox.Size = new System.Drawing.Size(211, 95);
-            this.HOI4_all_dlc_listbox.TabIndex = 11;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 114);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(75, 13);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "Enabled DLCs";
             // 
-            // hoi4_enabled_dlc_listbox
+            // label3
             // 
-            this.hoi4_enabled_dlc_listbox.FormattingEnabled = true;
-            this.hoi4_enabled_dlc_listbox.Location = new System.Drawing.Point(3, 128);
-            this.hoi4_enabled_dlc_listbox.Name = "hoi4_enabled_dlc_listbox";
-            this.hoi4_enabled_dlc_listbox.Size = new System.Drawing.Size(211, 95);
-            this.hoi4_enabled_dlc_listbox.TabIndex = 12;
-            // 
-            // HOI4_add_dlc_button
-            // 
-            this.HOI4_add_dlc_button.Location = new System.Drawing.Point(2, 270);
-            this.HOI4_add_dlc_button.Name = "HOI4_add_dlc_button";
-            this.HOI4_add_dlc_button.Size = new System.Drawing.Size(211, 33);
-            this.HOI4_add_dlc_button.TabIndex = 13;
-            this.HOI4_add_dlc_button.Text = "Enable selected DLC";
-            this.HOI4_add_dlc_button.UseVisualStyleBackColor = true;
-            this.HOI4_add_dlc_button.Click += new System.EventHandler(this.HOI4_add_dlc_button_Click);
-            // 
-            // HOI4_remove_dlc_button
-            // 
-            this.HOI4_remove_dlc_button.Location = new System.Drawing.Point(2, 229);
-            this.HOI4_remove_dlc_button.Name = "HOI4_remove_dlc_button";
-            this.HOI4_remove_dlc_button.Size = new System.Drawing.Size(211, 33);
-            this.HOI4_remove_dlc_button.TabIndex = 14;
-            this.HOI4_remove_dlc_button.Text = "Disable selected dlc";
-            this.HOI4_remove_dlc_button.UseVisualStyleBackColor = true;
-            this.HOI4_remove_dlc_button.Click += new System.EventHandler(this.HOI4_remove_dlc_button_Click);
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(47, 13);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "All DLCs";
             // 
             // HOI4_enable_all_dlc_button
             // 
@@ -294,29 +281,86 @@ namespace hoi4_launcher
             this.HOI4_enable_all_dlc_button.UseVisualStyleBackColor = true;
             this.HOI4_enable_all_dlc_button.Click += new System.EventHandler(this.HOI4_enable_all_dlc_button_Click);
             // 
-            // label3
+            // HOI4_remove_dlc_button
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 13);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "All DLCs";
+            this.HOI4_remove_dlc_button.Location = new System.Drawing.Point(2, 229);
+            this.HOI4_remove_dlc_button.Name = "HOI4_remove_dlc_button";
+            this.HOI4_remove_dlc_button.Size = new System.Drawing.Size(211, 33);
+            this.HOI4_remove_dlc_button.TabIndex = 14;
+            this.HOI4_remove_dlc_button.Text = "Disable selected dlc";
+            this.HOI4_remove_dlc_button.UseVisualStyleBackColor = true;
+            this.HOI4_remove_dlc_button.Click += new System.EventHandler(this.HOI4_remove_dlc_button_Click);
             // 
-            // label4
+            // HOI4_add_dlc_button
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 114);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(75, 13);
-            this.label4.TabIndex = 16;
-            this.label4.Text = "Enabled DLCs";
+            this.HOI4_add_dlc_button.Location = new System.Drawing.Point(2, 270);
+            this.HOI4_add_dlc_button.Name = "HOI4_add_dlc_button";
+            this.HOI4_add_dlc_button.Size = new System.Drawing.Size(211, 33);
+            this.HOI4_add_dlc_button.TabIndex = 13;
+            this.HOI4_add_dlc_button.Text = "Enable selected DLC";
+            this.HOI4_add_dlc_button.UseVisualStyleBackColor = true;
+            this.HOI4_add_dlc_button.Click += new System.EventHandler(this.HOI4_add_dlc_button_Click);
+            // 
+            // hoi4_enabled_dlc_listbox
+            // 
+            this.hoi4_enabled_dlc_listbox.FormattingEnabled = true;
+            this.hoi4_enabled_dlc_listbox.Location = new System.Drawing.Point(3, 128);
+            this.hoi4_enabled_dlc_listbox.Name = "hoi4_enabled_dlc_listbox";
+            this.hoi4_enabled_dlc_listbox.Size = new System.Drawing.Size(211, 95);
+            this.hoi4_enabled_dlc_listbox.TabIndex = 12;
+            // 
+            // HOI4_all_dlc_listbox
+            // 
+            this.HOI4_all_dlc_listbox.FormattingEnabled = true;
+            this.HOI4_all_dlc_listbox.Location = new System.Drawing.Point(2, 16);
+            this.HOI4_all_dlc_listbox.Name = "HOI4_all_dlc_listbox";
+            this.HOI4_all_dlc_listbox.Size = new System.Drawing.Size(211, 95);
+            this.HOI4_all_dlc_listbox.TabIndex = 11;
+            // 
+            // HOI4_playset_selector_panel
+            // 
+            this.HOI4_playset_selector_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.HOI4_playset_selector_panel.Controls.Add(this.load_playset_button);
+            this.HOI4_playset_selector_panel.Controls.Add(this.create_new_playset_button);
+            this.HOI4_playset_selector_panel.Controls.Add(this.HOI4_playset_selector_combobox);
+            this.HOI4_playset_selector_panel.Location = new System.Drawing.Point(461, 320);
+            this.HOI4_playset_selector_panel.Name = "HOI4_playset_selector_panel";
+            this.HOI4_playset_selector_panel.Size = new System.Drawing.Size(315, 100);
+            this.HOI4_playset_selector_panel.TabIndex = 6;
+            // 
+            // HOI4_playset_selector_combobox
+            // 
+            this.HOI4_playset_selector_combobox.FormattingEnabled = true;
+            this.HOI4_playset_selector_combobox.Location = new System.Drawing.Point(3, 13);
+            this.HOI4_playset_selector_combobox.Name = "HOI4_playset_selector_combobox";
+            this.HOI4_playset_selector_combobox.Size = new System.Drawing.Size(307, 21);
+            this.HOI4_playset_selector_combobox.TabIndex = 0;
+            // 
+            // create_new_playset_button
+            // 
+            this.create_new_playset_button.Location = new System.Drawing.Point(98, 40);
+            this.create_new_playset_button.Name = "create_new_playset_button";
+            this.create_new_playset_button.Size = new System.Drawing.Size(124, 21);
+            this.create_new_playset_button.TabIndex = 1;
+            this.create_new_playset_button.Text = "Create new playset";
+            this.create_new_playset_button.UseVisualStyleBackColor = true;
+            this.create_new_playset_button.Click += new System.EventHandler(this.create_new_playset_button_Click);
+            // 
+            // load_playset_button
+            // 
+            this.load_playset_button.Location = new System.Drawing.Point(98, 67);
+            this.load_playset_button.Name = "load_playset_button";
+            this.load_playset_button.Size = new System.Drawing.Size(124, 21);
+            this.load_playset_button.TabIndex = 2;
+            this.load_playset_button.Text = "Load selected playset";
+            this.load_playset_button.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(796, 431);
+            this.Controls.Add(this.HOI4_playset_selector_panel);
             this.Controls.Add(this.HOI4_dlc_selection_panel);
             this.Controls.Add(this.launch_panel);
             this.Controls.Add(this.mod_selection_panel);
@@ -330,6 +374,7 @@ namespace hoi4_launcher
             this.launch_panel.ResumeLayout(false);
             this.HOI4_dlc_selection_panel.ResumeLayout(false);
             this.HOI4_dlc_selection_panel.PerformLayout();
+            this.HOI4_playset_selector_panel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -363,6 +408,10 @@ namespace hoi4_launcher
         private System.Windows.Forms.Button HOI4_enable_all_dlc_button;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel HOI4_playset_selector_panel;
+        private System.Windows.Forms.ComboBox HOI4_playset_selector_combobox;
+        private System.Windows.Forms.Button load_playset_button;
+        private System.Windows.Forms.Button create_new_playset_button;
     }
 }
 
