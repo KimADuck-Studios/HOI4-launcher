@@ -30,6 +30,8 @@ namespace hoi4_launcher
         private void InitializeComponent()
         {
             this.setLocations_panel = new System.Windows.Forms.Panel();
+            this.workshop_folder_button = new System.Windows.Forms.Button();
+            this.workshop_folder_textbox = new System.Windows.Forms.TextBox();
             this.hoi4_exe_location_button = new System.Windows.Forms.Button();
             this.hoi4_exe_location_textbox = new System.Windows.Forms.TextBox();
             this.hoi4_mod_location_button = new System.Windows.Forms.Button();
@@ -62,9 +64,9 @@ namespace hoi4_launcher
             this.load_playset_button = new System.Windows.Forms.Button();
             this.create_new_playset_button = new System.Windows.Forms.Button();
             this.modding_panel = new System.Windows.Forms.Panel();
-            this.create_new_mod_button = new System.Windows.Forms.Button();
-            this.new_mod_name_textbox = new System.Windows.Forms.TextBox();
             this.reload_workshop_mods_button = new System.Windows.Forms.Button();
+            this.new_mod_name_textbox = new System.Windows.Forms.TextBox();
+            this.create_new_mod_button = new System.Windows.Forms.Button();
             this.setLocations_panel.SuspendLayout();
             this.mod_selection_panel.SuspendLayout();
             this.launch_panel.SuspendLayout();
@@ -76,18 +78,37 @@ namespace hoi4_launcher
             // setLocations_panel
             // 
             this.setLocations_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.setLocations_panel.Controls.Add(this.workshop_folder_button);
+            this.setLocations_panel.Controls.Add(this.workshop_folder_textbox);
             this.setLocations_panel.Controls.Add(this.hoi4_exe_location_button);
             this.setLocations_panel.Controls.Add(this.hoi4_exe_location_textbox);
             this.setLocations_panel.Controls.Add(this.hoi4_mod_location_button);
             this.setLocations_panel.Controls.Add(this.hoi4_location_textbox);
-            this.setLocations_panel.Location = new System.Drawing.Point(8, 8);
+            this.setLocations_panel.Location = new System.Drawing.Point(784, 312);
             this.setLocations_panel.Name = "setLocations_panel";
-            this.setLocations_panel.Size = new System.Drawing.Size(220, 55);
+            this.setLocations_panel.Size = new System.Drawing.Size(320, 104);
             this.setLocations_panel.TabIndex = 0;
+            // 
+            // workshop_folder_button
+            // 
+            this.workshop_folder_button.Location = new System.Drawing.Point(288, 56);
+            this.workshop_folder_button.Name = "workshop_folder_button";
+            this.workshop_folder_button.Size = new System.Drawing.Size(25, 20);
+            this.workshop_folder_button.TabIndex = 5;
+            this.workshop_folder_button.Text = "...";
+            this.workshop_folder_button.UseVisualStyleBackColor = true;
+            // 
+            // workshop_folder_textbox
+            // 
+            this.workshop_folder_textbox.Location = new System.Drawing.Point(8, 56);
+            this.workshop_folder_textbox.Name = "workshop_folder_textbox";
+            this.workshop_folder_textbox.Size = new System.Drawing.Size(272, 20);
+            this.workshop_folder_textbox.TabIndex = 4;
+            this.workshop_folder_textbox.Text = "HOI4 workshop folder";
             // 
             // hoi4_exe_location_button
             // 
-            this.hoi4_exe_location_button.Location = new System.Drawing.Point(189, 29);
+            this.hoi4_exe_location_button.Location = new System.Drawing.Point(288, 32);
             this.hoi4_exe_location_button.Name = "hoi4_exe_location_button";
             this.hoi4_exe_location_button.Size = new System.Drawing.Size(25, 20);
             this.hoi4_exe_location_button.TabIndex = 3;
@@ -97,15 +118,15 @@ namespace hoi4_launcher
             // 
             // hoi4_exe_location_textbox
             // 
-            this.hoi4_exe_location_textbox.Location = new System.Drawing.Point(3, 29);
+            this.hoi4_exe_location_textbox.Location = new System.Drawing.Point(8, 32);
             this.hoi4_exe_location_textbox.Name = "hoi4_exe_location_textbox";
-            this.hoi4_exe_location_textbox.Size = new System.Drawing.Size(180, 20);
+            this.hoi4_exe_location_textbox.Size = new System.Drawing.Size(272, 20);
             this.hoi4_exe_location_textbox.TabIndex = 2;
             this.hoi4_exe_location_textbox.Text = "HOI4 exe";
             // 
             // hoi4_mod_location_button
             // 
-            this.hoi4_mod_location_button.Location = new System.Drawing.Point(189, 3);
+            this.hoi4_mod_location_button.Location = new System.Drawing.Point(288, 8);
             this.hoi4_mod_location_button.Name = "hoi4_mod_location_button";
             this.hoi4_mod_location_button.Size = new System.Drawing.Size(25, 20);
             this.hoi4_mod_location_button.TabIndex = 1;
@@ -115,9 +136,9 @@ namespace hoi4_launcher
             // 
             // hoi4_location_textbox
             // 
-            this.hoi4_location_textbox.Location = new System.Drawing.Point(3, 3);
+            this.hoi4_location_textbox.Location = new System.Drawing.Point(8, 8);
             this.hoi4_location_textbox.Name = "hoi4_location_textbox";
-            this.hoi4_location_textbox.Size = new System.Drawing.Size(180, 20);
+            this.hoi4_location_textbox.Size = new System.Drawing.Size(272, 20);
             this.hoi4_location_textbox.TabIndex = 0;
             this.hoi4_location_textbox.Text = "HOI4 folder";
             // 
@@ -132,7 +153,7 @@ namespace hoi4_launcher
             this.mod_selection_panel.Controls.Add(this.add_selected_mod_button);
             this.mod_selection_panel.Controls.Add(this.enabled_mods_listbox);
             this.mod_selection_panel.Controls.Add(this.allMods_listbox);
-            this.mod_selection_panel.Location = new System.Drawing.Point(232, 8);
+            this.mod_selection_panel.Location = new System.Drawing.Point(240, 8);
             this.mod_selection_panel.Name = "mod_selection_panel";
             this.mod_selection_panel.Size = new System.Drawing.Size(537, 300);
             this.mod_selection_panel.TabIndex = 2;
@@ -215,7 +236,7 @@ namespace hoi4_launcher
             this.launch_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.launch_panel.Controls.Add(this.launch_game_button);
             this.launch_panel.Controls.Add(this.launch_debug_button);
-            this.launch_panel.Location = new System.Drawing.Point(232, 312);
+            this.launch_panel.Location = new System.Drawing.Point(240, 312);
             this.launch_panel.Name = "launch_panel";
             this.launch_panel.Size = new System.Drawing.Size(216, 104);
             this.launch_panel.TabIndex = 3;
@@ -226,7 +247,7 @@ namespace hoi4_launcher
             this.launch_game_button.Name = "launch_game_button";
             this.launch_game_button.Size = new System.Drawing.Size(99, 92);
             this.launch_game_button.TabIndex = 5;
-            this.launch_game_button.Text = "LAUNCH GAME";
+            this.launch_game_button.Text = "Launch Game";
             this.launch_game_button.UseVisualStyleBackColor = true;
             this.launch_game_button.Click += new System.EventHandler(this.launch_game_button_Click);
             // 
@@ -236,7 +257,7 @@ namespace hoi4_launcher
             this.launch_debug_button.Name = "launch_debug_button";
             this.launch_debug_button.Size = new System.Drawing.Size(99, 92);
             this.launch_debug_button.TabIndex = 4;
-            this.launch_debug_button.Text = "LAUNCH DEBUG";
+            this.launch_debug_button.Text = "Launch Debug";
             this.launch_debug_button.UseVisualStyleBackColor = true;
             this.launch_debug_button.Click += new System.EventHandler(this.launch_debug_button_Click);
             // 
@@ -254,15 +275,15 @@ namespace hoi4_launcher
             this.HOI4_dlc_selection_panel.Controls.Add(this.HOI4_add_dlc_button);
             this.HOI4_dlc_selection_panel.Controls.Add(this.hoi4_enabled_dlc_listbox);
             this.HOI4_dlc_selection_panel.Controls.Add(this.HOI4_all_dlc_listbox);
-            this.HOI4_dlc_selection_panel.Location = new System.Drawing.Point(8, 69);
+            this.HOI4_dlc_selection_panel.Location = new System.Drawing.Point(8, 8);
             this.HOI4_dlc_selection_panel.Name = "HOI4_dlc_selection_panel";
-            this.HOI4_dlc_selection_panel.Size = new System.Drawing.Size(220, 347);
+            this.HOI4_dlc_selection_panel.Size = new System.Drawing.Size(224, 408);
             this.HOI4_dlc_selection_panel.TabIndex = 4;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 114);
+            this.label4.Location = new System.Drawing.Point(9, 136);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(75, 13);
             this.label4.TabIndex = 16;
@@ -271,7 +292,7 @@ namespace hoi4_launcher
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 0);
+            this.label3.Location = new System.Drawing.Point(9, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(47, 13);
             this.label3.TabIndex = 11;
@@ -279,9 +300,9 @@ namespace hoi4_launcher
             // 
             // HOI4_enable_all_dlc_button
             // 
-            this.HOI4_enable_all_dlc_button.Location = new System.Drawing.Point(3, 309);
+            this.HOI4_enable_all_dlc_button.Location = new System.Drawing.Point(8, 366);
             this.HOI4_enable_all_dlc_button.Name = "HOI4_enable_all_dlc_button";
-            this.HOI4_enable_all_dlc_button.Size = new System.Drawing.Size(211, 33);
+            this.HOI4_enable_all_dlc_button.Size = new System.Drawing.Size(208, 33);
             this.HOI4_enable_all_dlc_button.TabIndex = 15;
             this.HOI4_enable_all_dlc_button.Text = "Enable all DLCs";
             this.HOI4_enable_all_dlc_button.UseVisualStyleBackColor = true;
@@ -289,9 +310,9 @@ namespace hoi4_launcher
             // 
             // HOI4_remove_dlc_button
             // 
-            this.HOI4_remove_dlc_button.Location = new System.Drawing.Point(2, 229);
+            this.HOI4_remove_dlc_button.Location = new System.Drawing.Point(8, 272);
             this.HOI4_remove_dlc_button.Name = "HOI4_remove_dlc_button";
-            this.HOI4_remove_dlc_button.Size = new System.Drawing.Size(211, 33);
+            this.HOI4_remove_dlc_button.Size = new System.Drawing.Size(208, 33);
             this.HOI4_remove_dlc_button.TabIndex = 14;
             this.HOI4_remove_dlc_button.Text = "Disable selected dlc";
             this.HOI4_remove_dlc_button.UseVisualStyleBackColor = true;
@@ -299,9 +320,9 @@ namespace hoi4_launcher
             // 
             // HOI4_add_dlc_button
             // 
-            this.HOI4_add_dlc_button.Location = new System.Drawing.Point(2, 270);
+            this.HOI4_add_dlc_button.Location = new System.Drawing.Point(8, 319);
             this.HOI4_add_dlc_button.Name = "HOI4_add_dlc_button";
-            this.HOI4_add_dlc_button.Size = new System.Drawing.Size(211, 33);
+            this.HOI4_add_dlc_button.Size = new System.Drawing.Size(208, 33);
             this.HOI4_add_dlc_button.TabIndex = 13;
             this.HOI4_add_dlc_button.Text = "Enable selected DLC";
             this.HOI4_add_dlc_button.UseVisualStyleBackColor = true;
@@ -310,17 +331,17 @@ namespace hoi4_launcher
             // hoi4_enabled_dlc_listbox
             // 
             this.hoi4_enabled_dlc_listbox.FormattingEnabled = true;
-            this.hoi4_enabled_dlc_listbox.Location = new System.Drawing.Point(3, 128);
+            this.hoi4_enabled_dlc_listbox.Location = new System.Drawing.Point(9, 163);
             this.hoi4_enabled_dlc_listbox.Name = "hoi4_enabled_dlc_listbox";
-            this.hoi4_enabled_dlc_listbox.Size = new System.Drawing.Size(211, 95);
+            this.hoi4_enabled_dlc_listbox.Size = new System.Drawing.Size(207, 95);
             this.hoi4_enabled_dlc_listbox.TabIndex = 12;
             // 
             // HOI4_all_dlc_listbox
             // 
             this.HOI4_all_dlc_listbox.FormattingEnabled = true;
-            this.HOI4_all_dlc_listbox.Location = new System.Drawing.Point(2, 16);
+            this.HOI4_all_dlc_listbox.Location = new System.Drawing.Point(8, 27);
             this.HOI4_all_dlc_listbox.Name = "HOI4_all_dlc_listbox";
-            this.HOI4_all_dlc_listbox.Size = new System.Drawing.Size(211, 95);
+            this.HOI4_all_dlc_listbox.Size = new System.Drawing.Size(208, 95);
             this.HOI4_all_dlc_listbox.TabIndex = 11;
             // 
             // HOI4_playset_selector_panel
@@ -330,7 +351,7 @@ namespace hoi4_launcher
             this.HOI4_playset_selector_panel.Controls.Add(this.HOI4_playset_lisbox);
             this.HOI4_playset_selector_panel.Controls.Add(this.load_playset_button);
             this.HOI4_playset_selector_panel.Controls.Add(this.create_new_playset_button);
-            this.HOI4_playset_selector_panel.Location = new System.Drawing.Point(776, 8);
+            this.HOI4_playset_selector_panel.Location = new System.Drawing.Point(784, 8);
             this.HOI4_playset_selector_panel.Name = "HOI4_playset_selector_panel";
             this.HOI4_playset_selector_panel.Size = new System.Drawing.Size(320, 299);
             this.HOI4_playset_selector_panel.TabIndex = 6;
@@ -378,10 +399,27 @@ namespace hoi4_launcher
             this.modding_panel.Controls.Add(this.reload_workshop_mods_button);
             this.modding_panel.Controls.Add(this.new_mod_name_textbox);
             this.modding_panel.Controls.Add(this.create_new_mod_button);
-            this.modding_panel.Location = new System.Drawing.Point(456, 312);
+            this.modding_panel.Location = new System.Drawing.Point(464, 312);
             this.modding_panel.Name = "modding_panel";
             this.modding_panel.Size = new System.Drawing.Size(311, 104);
             this.modding_panel.TabIndex = 5;
+            // 
+            // reload_workshop_mods_button
+            // 
+            this.reload_workshop_mods_button.Location = new System.Drawing.Point(8, 56);
+            this.reload_workshop_mods_button.Name = "reload_workshop_mods_button";
+            this.reload_workshop_mods_button.Size = new System.Drawing.Size(96, 40);
+            this.reload_workshop_mods_button.TabIndex = 7;
+            this.reload_workshop_mods_button.Text = "Reload workshop mods";
+            this.reload_workshop_mods_button.UseVisualStyleBackColor = true;
+            this.reload_workshop_mods_button.Click += new System.EventHandler(this.reload_workshop_mods_button_Click);
+            // 
+            // new_mod_name_textbox
+            // 
+            this.new_mod_name_textbox.Location = new System.Drawing.Point(112, 16);
+            this.new_mod_name_textbox.Name = "new_mod_name_textbox";
+            this.new_mod_name_textbox.Size = new System.Drawing.Size(184, 20);
+            this.new_mod_name_textbox.TabIndex = 1;
             // 
             // create_new_mod_button
             // 
@@ -392,22 +430,6 @@ namespace hoi4_launcher
             this.create_new_mod_button.Text = "Create my new mod";
             this.create_new_mod_button.UseVisualStyleBackColor = true;
             this.create_new_mod_button.Click += new System.EventHandler(this.create_new_mod_button_Click);
-            // 
-            // new_mod_name_textbox
-            // 
-            this.new_mod_name_textbox.Location = new System.Drawing.Point(112, 16);
-            this.new_mod_name_textbox.Name = "new_mod_name_textbox";
-            this.new_mod_name_textbox.Size = new System.Drawing.Size(184, 20);
-            this.new_mod_name_textbox.TabIndex = 1;
-            // 
-            // reload_workshop_mods_button
-            // 
-            this.reload_workshop_mods_button.Location = new System.Drawing.Point(8, 56);
-            this.reload_workshop_mods_button.Name = "reload_workshop_mods_button";
-            this.reload_workshop_mods_button.Size = new System.Drawing.Size(96, 40);
-            this.reload_workshop_mods_button.TabIndex = 7;
-            this.reload_workshop_mods_button.Text = "Reload workshop mods";
-            this.reload_workshop_mods_button.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -475,6 +497,8 @@ namespace hoi4_launcher
         private System.Windows.Forms.Button create_new_mod_button;
         private System.Windows.Forms.TextBox new_mod_name_textbox;
         private System.Windows.Forms.Button reload_workshop_mods_button;
+        private System.Windows.Forms.Button workshop_folder_button;
+        private System.Windows.Forms.TextBox workshop_folder_textbox;
     }
 }
 

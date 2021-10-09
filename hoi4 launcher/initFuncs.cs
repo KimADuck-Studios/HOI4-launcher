@@ -39,6 +39,15 @@ namespace hoi4_launcher
                     getExeLoc(); // file exists, but location not set
                 }
 
+                if (ini.KeyExists("workshopFolder"))
+                {
+                    workshopLocation = ini.Read("workshopFolder"); // gets location
+                }
+                else
+                {
+                    getWorkshopLoc(); // file exists, but location not set
+                }
+
                 hoi4_exe_location_textbox.Text = exeLocation;
                 hoi4_location_textbox.Text = folderLocation;
             }
@@ -84,7 +93,6 @@ namespace hoi4_launcher
 
         public void reloadSelectionBox(string filter = "")
         {
-            List<mod> enabledMods = new List<mod>();
             List<mod> allMods = new List<mod>();
 
             ListBox[] x = { allMods_listbox, enabled_mods_listbox };
@@ -104,10 +112,6 @@ namespace hoi4_launcher
                         {
                             allMods.Add((mod)o);
                         }
-                        else
-                        {
-                            enabledMods.Add((mod)o);
-                        }
                     }
                     else
                     {
@@ -117,19 +121,13 @@ namespace hoi4_launcher
                             {
                                 allMods.Add((mod)o);
                             }
-                            else
-                            {
-                                enabledMods.Add((mod)o);
-                            }
                         }
                     }
                 }
             }
 
             allMods_listbox.Items.Clear();
-            enabled_mods_listbox.Items.Clear();
 
-            loadListBox(enabledMods, enabled_mods_listbox);
             loadListBox(allMods, allMods_listbox);
         }
 
@@ -152,6 +150,19 @@ namespace hoi4_launcher
             hoi4_exe_location_textbox.Text = exeLocation;
 
             ini.Write("exelocation", exeLocation);
+        }
+
+        public void getWorkshopLoc()
+        {
+            MessageBox.Show(loc3);
+
+            folderBrowserDialog1.ShowDialog();
+
+            workshopLocation = folderBrowserDialog1.SelectedPath;
+
+            workshop_folder_textbox.Text = workshopLocation;
+
+            ini.Write("workshopFolder", workshopLocation);
         }
 
         private void hoi4_exe_location_button_Click(object sender, EventArgs e)

@@ -33,7 +33,7 @@ namespace hoi4_launcher
             if (resetModList)
             {
                 allMods_listbox.Items.Clear();
-                enabled_mods_listbox.Items.Clear();
+                // enabled_mods_listbox.Items.Clear();
             }
 
             foreach (string fName in ugcFiles)
@@ -71,7 +71,7 @@ namespace hoi4_launcher
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            loadMods();
+            loadMods(true);
 
             reloadSelectionBox(filter_mods_textbox.Text);
         }

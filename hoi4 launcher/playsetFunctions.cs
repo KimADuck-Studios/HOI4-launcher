@@ -101,6 +101,7 @@ namespace hoi4_launcher
 
                 Directory.CreateDirectory("settings/playsets/");
                 File.WriteAllLines($"settings/playsets/{playset_name_textbox.Text}.txt", vs);
+                HOI4_playset_lisbox.Items.Clear();
                 loadPlaysets();
             }
             catch { }
