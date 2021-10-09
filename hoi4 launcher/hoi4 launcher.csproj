@@ -48,6 +48,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="dlc.cs" />
+    <Compile Include="dlcFuncs.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -55,8 +58,20 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="IniFile.cs" />
+    <Compile Include="initFuncs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="loadGameFuncs.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="mod.cs" />
+    <Compile Include="modFuncs.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="playset.cs" />
+    <Compile Include="playsetFunctions.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
