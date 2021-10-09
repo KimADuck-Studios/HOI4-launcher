@@ -30,7 +30,7 @@ namespace hoi4_launcher
         public Form1()
         {
             InitializeComponent();
-            // init();
+            init();
             loadPlaysets();
 
         }
@@ -117,7 +117,7 @@ namespace hoi4_launcher
             if (resetModList)
             {
                 allMods_listbox.Items.Clear();
-                playset_listbox.Items.Clear();
+                enabled_mods_listbox.Items.Clear();
             }
 
             foreach (string fName in ugcFiles)
@@ -136,7 +136,7 @@ namespace hoi4_launcher
             List<mod> enabledMods = new List<mod>();
             List<mod> allMods = new List<mod>();
 
-            ListBox[] x = { allMods_listbox, playset_listbox };
+            ListBox[] x = { allMods_listbox, enabled_mods_listbox };
 
             foreach (ListBox l in x)
             {
@@ -176,9 +176,9 @@ namespace hoi4_launcher
             }
 
             allMods_listbox.Items.Clear();
-            playset_listbox.Items.Clear();
+            enabled_mods_listbox.Items.Clear();
 
-            loadListBox(enabledMods, playset_listbox);
+            loadListBox(enabledMods, enabled_mods_listbox);
             loadListBox(allMods, allMods_listbox);
         }
 
@@ -231,7 +231,7 @@ namespace hoi4_launcher
             try
             {
                 object toAdd = allMods_listbox.SelectedItem;
-                playset_listbox.Items.Add(toAdd);
+                enabled_mods_listbox.Items.Add(toAdd);
 
                 reloadSelectionBox();
 
@@ -245,10 +245,10 @@ namespace hoi4_launcher
 
         private void remove_selected_mod_button_Click(object sender, EventArgs e)
         {
-            if (playset_listbox.SelectedItem == null) { return; }
+            if (enabled_mods_listbox.SelectedItem == null) { return; }
 
-            object toRemove = playset_listbox.SelectedItem;
-            playset_listbox.Items.Remove(toRemove);
+            object toRemove = enabled_mods_listbox.SelectedItem;
+            enabled_mods_listbox.Items.Remove(toRemove);
 
             reloadSelectionBox();
 
@@ -257,7 +257,7 @@ namespace hoi4_launcher
 
         private void remove_all_mods_button_Click(object sender, EventArgs e)
         {
-            playset_listbox.Items.Clear();
+            enabled_mods_listbox.Items.Clear();
 
             reloadSelectionBox();
 
@@ -310,7 +310,7 @@ namespace hoi4_launcher
 
                         object referenceObj = new mod(s[0], s[6]);
 
-                        playset_listbox.Items.Add(referenceObj);
+                        enabled_mods_listbox.Items.Add(referenceObj);
                     }
                     catch
                     {
@@ -330,7 +330,7 @@ namespace hoi4_launcher
 
             List<string> ls = new List<string>();
 
-            foreach (mod mod in playset_listbox.Items)
+            foreach (mod mod in enabled_mods_listbox.Items)
             {
                 ls.Add($"{mod.myModName}##~~##{mod.myLocation}");
             }
@@ -422,7 +422,7 @@ namespace hoi4_launcher
                 }
             }
 
-            foreach (mod mod in playset_listbox.Items)
+            foreach (mod mod in enabled_mods_listbox.Items)
             {
                 enabledModsStringBuilder += $"\"{mod.myLocation}\",";
             }
@@ -529,7 +529,7 @@ namespace hoi4_launcher
                         modsList.Add(new mod(s[0], s[6]));
                     }
 
-                    HOI4_playset_selector_combobox.Items.Add(new playset(fname, modsList.ToArray()));
+                    HOI4_playset_lisbox.Items.Add(new playset(Path.GetFileNameWithoutExtension(fname), modsList.ToArray()));
                 }
             }
             catch
@@ -540,7 +540,40 @@ namespace hoi4_launcher
 
         private void create_new_playset_button_Click(object sender, EventArgs e)
         {
+            try
+            {
+                List<string> vs = new List<string>();
+                foreach (mod m in enabled_mods_listbox.Items)
+                {
+                    vs.Add($"{m.myModName}##~~##{m.myLocation}");
+                }
 
+                Directory.CreateDirectory("settings/playsets/");
+                File.WriteAllLines($"settings/playsets/{playset_name_textbox.Text}.txt", vs);
+                loadPlaysets();
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void load_playset_button_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                playset ps = (playset)HOI4_playset_lisbox.SelectedItem;
+                enabled_mods_listbox.Items.Clear();
+
+                foreach (mod mod in ps.mods)
+                {
+                    enabled_mods_listbox.Items.Add(mod);
+                }
+
+            }
+            catch
+            {
+            }
         }
     }
 }

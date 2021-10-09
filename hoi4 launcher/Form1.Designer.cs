@@ -42,7 +42,7 @@ namespace hoi4_launcher
             this.remove_all_mods_button = new System.Windows.Forms.Button();
             this.remove_selected_mod_button = new System.Windows.Forms.Button();
             this.add_selected_mod_button = new System.Windows.Forms.Button();
-            this.playset_listbox = new System.Windows.Forms.ListBox();
+            this.enabled_mods_listbox = new System.Windows.Forms.ListBox();
             this.allMods_listbox = new System.Windows.Forms.ListBox();
             this.launch_panel = new System.Windows.Forms.Panel();
             this.launch_game_button = new System.Windows.Forms.Button();
@@ -57,9 +57,10 @@ namespace hoi4_launcher
             this.hoi4_enabled_dlc_listbox = new System.Windows.Forms.ListBox();
             this.HOI4_all_dlc_listbox = new System.Windows.Forms.ListBox();
             this.HOI4_playset_selector_panel = new System.Windows.Forms.Panel();
-            this.HOI4_playset_selector_combobox = new System.Windows.Forms.ComboBox();
-            this.create_new_playset_button = new System.Windows.Forms.Button();
             this.load_playset_button = new System.Windows.Forms.Button();
+            this.create_new_playset_button = new System.Windows.Forms.Button();
+            this.HOI4_playset_lisbox = new System.Windows.Forms.ListBox();
+            this.playset_name_textbox = new System.Windows.Forms.TextBox();
             this.setLocations_panel.SuspendLayout();
             this.mod_selection_panel.SuspendLayout();
             this.launch_panel.SuspendLayout();
@@ -124,7 +125,7 @@ namespace hoi4_launcher
             this.mod_selection_panel.Controls.Add(this.remove_all_mods_button);
             this.mod_selection_panel.Controls.Add(this.remove_selected_mod_button);
             this.mod_selection_panel.Controls.Add(this.add_selected_mod_button);
-            this.mod_selection_panel.Controls.Add(this.playset_listbox);
+            this.mod_selection_panel.Controls.Add(this.enabled_mods_listbox);
             this.mod_selection_panel.Controls.Add(this.allMods_listbox);
             this.mod_selection_panel.Location = new System.Drawing.Point(239, 12);
             this.mod_selection_panel.Name = "mod_selection_panel";
@@ -188,13 +189,13 @@ namespace hoi4_launcher
             this.add_selected_mod_button.UseVisualStyleBackColor = true;
             this.add_selected_mod_button.Click += new System.EventHandler(this.add_selected_mod_button_Click);
             // 
-            // playset_listbox
+            // enabled_mods_listbox
             // 
-            this.playset_listbox.FormattingEnabled = true;
-            this.playset_listbox.Location = new System.Drawing.Point(320, 16);
-            this.playset_listbox.Name = "playset_listbox";
-            this.playset_listbox.Size = new System.Drawing.Size(212, 277);
-            this.playset_listbox.TabIndex = 4;
+            this.enabled_mods_listbox.FormattingEnabled = true;
+            this.enabled_mods_listbox.Location = new System.Drawing.Point(320, 16);
+            this.enabled_mods_listbox.Name = "enabled_mods_listbox";
+            this.enabled_mods_listbox.Size = new System.Drawing.Size(212, 277);
+            this.enabled_mods_listbox.TabIndex = 4;
             // 
             // allMods_listbox
             // 
@@ -320,40 +321,51 @@ namespace hoi4_launcher
             // HOI4_playset_selector_panel
             // 
             this.HOI4_playset_selector_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.HOI4_playset_selector_panel.Controls.Add(this.playset_name_textbox);
+            this.HOI4_playset_selector_panel.Controls.Add(this.HOI4_playset_lisbox);
             this.HOI4_playset_selector_panel.Controls.Add(this.load_playset_button);
             this.HOI4_playset_selector_panel.Controls.Add(this.create_new_playset_button);
-            this.HOI4_playset_selector_panel.Controls.Add(this.HOI4_playset_selector_combobox);
             this.HOI4_playset_selector_panel.Location = new System.Drawing.Point(461, 320);
             this.HOI4_playset_selector_panel.Name = "HOI4_playset_selector_panel";
             this.HOI4_playset_selector_panel.Size = new System.Drawing.Size(315, 100);
             this.HOI4_playset_selector_panel.TabIndex = 6;
             // 
-            // HOI4_playset_selector_combobox
+            // load_playset_button
             // 
-            this.HOI4_playset_selector_combobox.FormattingEnabled = true;
-            this.HOI4_playset_selector_combobox.Location = new System.Drawing.Point(3, 13);
-            this.HOI4_playset_selector_combobox.Name = "HOI4_playset_selector_combobox";
-            this.HOI4_playset_selector_combobox.Size = new System.Drawing.Size(307, 21);
-            this.HOI4_playset_selector_combobox.TabIndex = 0;
+            this.load_playset_button.Location = new System.Drawing.Point(191, 75);
+            this.load_playset_button.Name = "load_playset_button";
+            this.load_playset_button.Size = new System.Drawing.Size(119, 21);
+            this.load_playset_button.TabIndex = 2;
+            this.load_playset_button.Text = "Load selected playset";
+            this.load_playset_button.UseVisualStyleBackColor = true;
+            this.load_playset_button.Click += new System.EventHandler(this.load_playset_button_Click);
             // 
             // create_new_playset_button
             // 
-            this.create_new_playset_button.Location = new System.Drawing.Point(98, 40);
+            this.create_new_playset_button.Location = new System.Drawing.Point(191, 48);
             this.create_new_playset_button.Name = "create_new_playset_button";
-            this.create_new_playset_button.Size = new System.Drawing.Size(124, 21);
+            this.create_new_playset_button.Size = new System.Drawing.Size(119, 21);
             this.create_new_playset_button.TabIndex = 1;
             this.create_new_playset_button.Text = "Create new playset";
             this.create_new_playset_button.UseVisualStyleBackColor = true;
             this.create_new_playset_button.Click += new System.EventHandler(this.create_new_playset_button_Click);
             // 
-            // load_playset_button
+            // HOI4_playset_lisbox
             // 
-            this.load_playset_button.Location = new System.Drawing.Point(98, 67);
-            this.load_playset_button.Name = "load_playset_button";
-            this.load_playset_button.Size = new System.Drawing.Size(124, 21);
-            this.load_playset_button.TabIndex = 2;
-            this.load_playset_button.Text = "Load selected playset";
-            this.load_playset_button.UseVisualStyleBackColor = true;
+            this.HOI4_playset_lisbox.FormattingEnabled = true;
+            this.HOI4_playset_lisbox.Location = new System.Drawing.Point(3, -1);
+            this.HOI4_playset_lisbox.Name = "HOI4_playset_lisbox";
+            this.HOI4_playset_lisbox.Size = new System.Drawing.Size(182, 95);
+            this.HOI4_playset_lisbox.TabIndex = 3;
+            // 
+            // playset_name_textbox
+            // 
+            this.playset_name_textbox.Location = new System.Drawing.Point(191, 3);
+            this.playset_name_textbox.Multiline = true;
+            this.playset_name_textbox.Name = "playset_name_textbox";
+            this.playset_name_textbox.Size = new System.Drawing.Size(119, 39);
+            this.playset_name_textbox.TabIndex = 4;
+            this.playset_name_textbox.Text = "Playset name";
             // 
             // Form1
             // 
@@ -375,6 +387,7 @@ namespace hoi4_launcher
             this.HOI4_dlc_selection_panel.ResumeLayout(false);
             this.HOI4_dlc_selection_panel.PerformLayout();
             this.HOI4_playset_selector_panel.ResumeLayout(false);
+            this.HOI4_playset_selector_panel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -391,7 +404,7 @@ namespace hoi4_launcher
         private System.Windows.Forms.Button remove_all_mods_button;
         private System.Windows.Forms.Button remove_selected_mod_button;
         private System.Windows.Forms.Button add_selected_mod_button;
-        private System.Windows.Forms.ListBox playset_listbox;
+        private System.Windows.Forms.ListBox enabled_mods_listbox;
         private System.Windows.Forms.ListBox allMods_listbox;
         private System.Windows.Forms.TextBox filter_mods_textbox;
         private System.Windows.Forms.Panel launch_panel;
@@ -409,9 +422,10 @@ namespace hoi4_launcher
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel HOI4_playset_selector_panel;
-        private System.Windows.Forms.ComboBox HOI4_playset_selector_combobox;
         private System.Windows.Forms.Button load_playset_button;
         private System.Windows.Forms.Button create_new_playset_button;
+        private System.Windows.Forms.ListBox HOI4_playset_lisbox;
+        private System.Windows.Forms.TextBox playset_name_textbox;
     }
 }
 
