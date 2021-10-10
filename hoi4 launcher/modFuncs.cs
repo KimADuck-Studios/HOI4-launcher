@@ -55,7 +55,7 @@ namespace hoi4_launcher
 
                 if (inDep && contains(line, "}")) { inDep = false; }
 
-                if (contains(line, "name") && !inDep)
+                if ((contains(line, "name=") || contains(line, "name =")) && !inDep)
                 {
                     return line.Split('=')[1].Trim().Replace("\"", "");
                 }
