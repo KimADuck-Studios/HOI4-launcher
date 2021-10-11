@@ -67,6 +67,7 @@ namespace hoi4_launcher
             this.reload_workshop_mods_button = new System.Windows.Forms.Button();
             this.new_mod_name_textbox = new System.Windows.Forms.TextBox();
             this.create_new_mod_button = new System.Windows.Forms.Button();
+            this.cmdArgs_textbox = new System.Windows.Forms.TextBox();
             this.setLocations_panel.SuspendLayout();
             this.mod_selection_panel.SuspendLayout();
             this.launch_panel.SuspendLayout();
@@ -234,6 +235,7 @@ namespace hoi4_launcher
             // launch_panel
             // 
             this.launch_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.launch_panel.Controls.Add(this.cmdArgs_textbox);
             this.launch_panel.Controls.Add(this.launch_game_button);
             this.launch_panel.Controls.Add(this.launch_debug_button);
             this.launch_panel.Location = new System.Drawing.Point(240, 312);
@@ -243,9 +245,9 @@ namespace hoi4_launcher
             // 
             // launch_game_button
             // 
-            this.launch_game_button.Location = new System.Drawing.Point(3, 3);
+            this.launch_game_button.Location = new System.Drawing.Point(8, 8);
             this.launch_game_button.Name = "launch_game_button";
-            this.launch_game_button.Size = new System.Drawing.Size(99, 92);
+            this.launch_game_button.Size = new System.Drawing.Size(99, 29);
             this.launch_game_button.TabIndex = 5;
             this.launch_game_button.Text = "Launch Game";
             this.launch_game_button.UseVisualStyleBackColor = true;
@@ -255,10 +257,11 @@ namespace hoi4_launcher
             // 
             this.launch_debug_button.Location = new System.Drawing.Point(112, 3);
             this.launch_debug_button.Name = "launch_debug_button";
-            this.launch_debug_button.Size = new System.Drawing.Size(99, 92);
+            this.launch_debug_button.Size = new System.Drawing.Size(99, 13);
             this.launch_debug_button.TabIndex = 4;
             this.launch_debug_button.Text = "Launch Debug";
             this.launch_debug_button.UseVisualStyleBackColor = true;
+            this.launch_debug_button.Visible = false;
             this.launch_debug_button.Click += new System.EventHandler(this.launch_debug_button_Click);
             // 
             // openFileDialog1
@@ -431,6 +434,16 @@ namespace hoi4_launcher
             this.create_new_mod_button.UseVisualStyleBackColor = true;
             this.create_new_mod_button.Click += new System.EventHandler(this.create_new_mod_button_Click);
             // 
+            // cmdArgs_textbox
+            // 
+            this.cmdArgs_textbox.Location = new System.Drawing.Point(8, 40);
+            this.cmdArgs_textbox.Multiline = true;
+            this.cmdArgs_textbox.Name = "cmdArgs_textbox";
+            this.cmdArgs_textbox.Size = new System.Drawing.Size(200, 56);
+            this.cmdArgs_textbox.TabIndex = 6;
+            this.cmdArgs_textbox.Text = "Command line arguments (seperate by newline)";
+            this.cmdArgs_textbox.TextChanged += new System.EventHandler(this.cmdArgs_textbox_TextChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -449,6 +462,7 @@ namespace hoi4_launcher
             this.mod_selection_panel.ResumeLayout(false);
             this.mod_selection_panel.PerformLayout();
             this.launch_panel.ResumeLayout(false);
+            this.launch_panel.PerformLayout();
             this.HOI4_dlc_selection_panel.ResumeLayout(false);
             this.HOI4_dlc_selection_panel.PerformLayout();
             this.HOI4_playset_selector_panel.ResumeLayout(false);
@@ -499,6 +513,7 @@ namespace hoi4_launcher
         private System.Windows.Forms.Button reload_workshop_mods_button;
         private System.Windows.Forms.Button workshop_folder_button;
         private System.Windows.Forms.TextBox workshop_folder_textbox;
+        private System.Windows.Forms.TextBox cmdArgs_textbox;
     }
 }
 

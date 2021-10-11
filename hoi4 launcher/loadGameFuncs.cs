@@ -13,11 +13,21 @@ namespace hoi4_launcher
 {
     public partial class Form1 : Form
     {
+        private void cmdArgs_textbox_TextChanged(object sender, System.EventArgs e)
+        {
+            File.WriteAllText("settings/.cmdargs", cmdArgs_textbox.Text);
+        }
 
         private void launch_game_button_Click(object sender, EventArgs e)
         {
             writeJson();
-            var proc = System.Diagnostics.Process.Start(exeLocation);
+
+            string[] args = cmdArgs_textbox.Text.Split(
+                new[] { "\r\n", "\r", "\n" },
+                StringSplitOptions.None
+            );
+            
+            var proc = System.Diagnostics.Process.Start(exeLocation, string.Join(" ", args));
         }
 
         private void launch_debug_button_Click(object sender, EventArgs e)

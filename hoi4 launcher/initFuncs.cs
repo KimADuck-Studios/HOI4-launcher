@@ -16,6 +16,15 @@ namespace hoi4_launcher
 
         public void init()
         {
+            try
+            {
+                cmdArgs_textbox.Text = File.ReadAllText("settings/.cmdargs");
+            }
+            catch
+            {
+
+            }
+
             // gets location of the hoi4 folder
             if (File.Exists("settings/.ini"))
             {
