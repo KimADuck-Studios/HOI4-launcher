@@ -47,6 +47,7 @@ namespace hoi4_launcher
             this.enabled_mods_listbox = new System.Windows.Forms.ListBox();
             this.allMods_listbox = new System.Windows.Forms.ListBox();
             this.launch_panel = new System.Windows.Forms.Panel();
+            this.cmdArgs_textbox = new System.Windows.Forms.TextBox();
             this.launch_game_button = new System.Windows.Forms.Button();
             this.launch_debug_button = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -59,6 +60,7 @@ namespace hoi4_launcher
             this.hoi4_enabled_dlc_listbox = new System.Windows.Forms.ListBox();
             this.HOI4_all_dlc_listbox = new System.Windows.Forms.ListBox();
             this.HOI4_playset_selector_panel = new System.Windows.Forms.Panel();
+            this.update_playlist_hoi4_button = new System.Windows.Forms.Button();
             this.playset_name_textbox = new System.Windows.Forms.TextBox();
             this.HOI4_playset_lisbox = new System.Windows.Forms.ListBox();
             this.load_playset_button = new System.Windows.Forms.Button();
@@ -67,7 +69,7 @@ namespace hoi4_launcher
             this.reload_workshop_mods_button = new System.Windows.Forms.Button();
             this.new_mod_name_textbox = new System.Windows.Forms.TextBox();
             this.create_new_mod_button = new System.Windows.Forms.Button();
-            this.cmdArgs_textbox = new System.Windows.Forms.TextBox();
+            this.playset_help_button = new System.Windows.Forms.Button();
             this.setLocations_panel.SuspendLayout();
             this.mod_selection_panel.SuspendLayout();
             this.launch_panel.SuspendLayout();
@@ -98,6 +100,7 @@ namespace hoi4_launcher
             this.workshop_folder_button.TabIndex = 5;
             this.workshop_folder_button.Text = "...";
             this.workshop_folder_button.UseVisualStyleBackColor = true;
+            this.workshop_folder_button.Click += new System.EventHandler(this.workshop_folder_button_Click);
             // 
             // workshop_folder_textbox
             // 
@@ -188,31 +191,31 @@ namespace hoi4_launcher
             // 
             // remove_all_mods_button
             // 
-            this.remove_all_mods_button.Location = new System.Drawing.Point(221, 238);
+            this.remove_all_mods_button.Location = new System.Drawing.Point(221, 232);
             this.remove_all_mods_button.Name = "remove_all_mods_button";
-            this.remove_all_mods_button.Size = new System.Drawing.Size(93, 53);
+            this.remove_all_mods_button.Size = new System.Drawing.Size(93, 59);
             this.remove_all_mods_button.TabIndex = 7;
-            this.remove_all_mods_button.Text = "Remove all mods from playset";
+            this.remove_all_mods_button.Text = "Disable all mods";
             this.remove_all_mods_button.UseVisualStyleBackColor = true;
             this.remove_all_mods_button.Click += new System.EventHandler(this.remove_all_mods_button_Click);
             // 
             // remove_selected_mod_button
             // 
-            this.remove_selected_mod_button.Location = new System.Drawing.Point(221, 153);
+            this.remove_selected_mod_button.Location = new System.Drawing.Point(221, 144);
             this.remove_selected_mod_button.Name = "remove_selected_mod_button";
-            this.remove_selected_mod_button.Size = new System.Drawing.Size(93, 53);
+            this.remove_selected_mod_button.Size = new System.Drawing.Size(93, 62);
             this.remove_selected_mod_button.TabIndex = 6;
-            this.remove_selected_mod_button.Text = "Remove selected mod from playset";
+            this.remove_selected_mod_button.Text = "Remove selected mod from enabled mods";
             this.remove_selected_mod_button.UseVisualStyleBackColor = true;
             this.remove_selected_mod_button.Click += new System.EventHandler(this.remove_selected_mod_button_Click);
             // 
             // add_selected_mod_button
             // 
-            this.add_selected_mod_button.Location = new System.Drawing.Point(221, 68);
+            this.add_selected_mod_button.Location = new System.Drawing.Point(221, 64);
             this.add_selected_mod_button.Name = "add_selected_mod_button";
-            this.add_selected_mod_button.Size = new System.Drawing.Size(93, 53);
+            this.add_selected_mod_button.Size = new System.Drawing.Size(93, 57);
             this.add_selected_mod_button.TabIndex = 5;
-            this.add_selected_mod_button.Text = "Add selected mod to playset";
+            this.add_selected_mod_button.Text = "Enable selected mod";
             this.add_selected_mod_button.UseVisualStyleBackColor = true;
             this.add_selected_mod_button.Click += new System.EventHandler(this.add_selected_mod_button_Click);
             // 
@@ -242,6 +245,16 @@ namespace hoi4_launcher
             this.launch_panel.Name = "launch_panel";
             this.launch_panel.Size = new System.Drawing.Size(216, 104);
             this.launch_panel.TabIndex = 3;
+            // 
+            // cmdArgs_textbox
+            // 
+            this.cmdArgs_textbox.Location = new System.Drawing.Point(8, 40);
+            this.cmdArgs_textbox.Multiline = true;
+            this.cmdArgs_textbox.Name = "cmdArgs_textbox";
+            this.cmdArgs_textbox.Size = new System.Drawing.Size(200, 56);
+            this.cmdArgs_textbox.TabIndex = 6;
+            this.cmdArgs_textbox.Text = "Command line arguments (seperate by newline)";
+            this.cmdArgs_textbox.TextChanged += new System.EventHandler(this.cmdArgs_textbox_TextChanged);
             // 
             // launch_game_button
             // 
@@ -350,6 +363,8 @@ namespace hoi4_launcher
             // HOI4_playset_selector_panel
             // 
             this.HOI4_playset_selector_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.HOI4_playset_selector_panel.Controls.Add(this.playset_help_button);
+            this.HOI4_playset_selector_panel.Controls.Add(this.update_playlist_hoi4_button);
             this.HOI4_playset_selector_panel.Controls.Add(this.playset_name_textbox);
             this.HOI4_playset_selector_panel.Controls.Add(this.HOI4_playset_lisbox);
             this.HOI4_playset_selector_panel.Controls.Add(this.load_playset_button);
@@ -358,6 +373,16 @@ namespace hoi4_launcher
             this.HOI4_playset_selector_panel.Name = "HOI4_playset_selector_panel";
             this.HOI4_playset_selector_panel.Size = new System.Drawing.Size(320, 299);
             this.HOI4_playset_selector_panel.TabIndex = 6;
+            // 
+            // update_playlist_hoi4_button
+            // 
+            this.update_playlist_hoi4_button.Location = new System.Drawing.Point(192, 123);
+            this.update_playlist_hoi4_button.Name = "update_playlist_hoi4_button";
+            this.update_playlist_hoi4_button.Size = new System.Drawing.Size(118, 40);
+            this.update_playlist_hoi4_button.TabIndex = 5;
+            this.update_playlist_hoi4_button.Text = "Update Current Playlist";
+            this.update_playlist_hoi4_button.UseVisualStyleBackColor = true;
+            this.update_playlist_hoi4_button.Click += new System.EventHandler(this.update_playlist_hoi4_button_Click);
             // 
             // playset_name_textbox
             // 
@@ -378,9 +403,9 @@ namespace hoi4_launcher
             // 
             // load_playset_button
             // 
-            this.load_playset_button.Location = new System.Drawing.Point(192, 80);
+            this.load_playset_button.Location = new System.Drawing.Point(192, 83);
             this.load_playset_button.Name = "load_playset_button";
-            this.load_playset_button.Size = new System.Drawing.Size(118, 21);
+            this.load_playset_button.Size = new System.Drawing.Size(118, 40);
             this.load_playset_button.TabIndex = 2;
             this.load_playset_button.Text = "Load selected playset";
             this.load_playset_button.UseVisualStyleBackColor = true;
@@ -388,9 +413,9 @@ namespace hoi4_launcher
             // 
             // create_new_playset_button
             // 
-            this.create_new_playset_button.Location = new System.Drawing.Point(192, 53);
+            this.create_new_playset_button.Location = new System.Drawing.Point(192, 48);
             this.create_new_playset_button.Name = "create_new_playset_button";
-            this.create_new_playset_button.Size = new System.Drawing.Size(118, 21);
+            this.create_new_playset_button.Size = new System.Drawing.Size(118, 35);
             this.create_new_playset_button.TabIndex = 1;
             this.create_new_playset_button.Text = "Create new playset";
             this.create_new_playset_button.UseVisualStyleBackColor = true;
@@ -434,15 +459,15 @@ namespace hoi4_launcher
             this.create_new_mod_button.UseVisualStyleBackColor = true;
             this.create_new_mod_button.Click += new System.EventHandler(this.create_new_mod_button_Click);
             // 
-            // cmdArgs_textbox
+            // playset_help_button
             // 
-            this.cmdArgs_textbox.Location = new System.Drawing.Point(8, 40);
-            this.cmdArgs_textbox.Multiline = true;
-            this.cmdArgs_textbox.Name = "cmdArgs_textbox";
-            this.cmdArgs_textbox.Size = new System.Drawing.Size(200, 56);
-            this.cmdArgs_textbox.TabIndex = 6;
-            this.cmdArgs_textbox.Text = "Command line arguments (seperate by newline)";
-            this.cmdArgs_textbox.TextChanged += new System.EventHandler(this.cmdArgs_textbox_TextChanged);
+            this.playset_help_button.Location = new System.Drawing.Point(192, 168);
+            this.playset_help_button.Name = "playset_help_button";
+            this.playset_help_button.Size = new System.Drawing.Size(24, 23);
+            this.playset_help_button.TabIndex = 6;
+            this.playset_help_button.Text = "?";
+            this.playset_help_button.UseVisualStyleBackColor = true;
+            this.playset_help_button.Click += new System.EventHandler(this.playset_help_button_Click);
             // 
             // Form1
             // 
@@ -514,6 +539,8 @@ namespace hoi4_launcher
         private System.Windows.Forms.Button workshop_folder_button;
         private System.Windows.Forms.TextBox workshop_folder_textbox;
         private System.Windows.Forms.TextBox cmdArgs_textbox;
+        private System.Windows.Forms.Button update_playlist_hoi4_button;
+        private System.Windows.Forms.Button playset_help_button;
     }
 }
 

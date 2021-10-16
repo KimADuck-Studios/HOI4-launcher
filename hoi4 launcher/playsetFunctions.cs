@@ -89,7 +89,7 @@ namespace hoi4_launcher
             }
         }
 
-        private void create_new_playset_button_Click(object sender, EventArgs e)
+        public void saveCustomPlayset()
         {
             try
             {
@@ -107,11 +107,22 @@ namespace hoi4_launcher
             catch { }
         }
 
+        private void create_new_playset_button_Click(object sender, EventArgs e)
+        {
+            saveCustomPlayset();
+        }
+
+        private void update_playlist_hoi4_button_Click(object sender, System.EventArgs e)
+        {
+            saveCustomPlayset();
+        }
+
         private void load_playset_button_Click(object sender, EventArgs e)
         {
             try
             {
                 playset ps = (playset)HOI4_playset_lisbox.SelectedItem;
+                playset_name_textbox.Text = ps.name;
                 enabled_mods_listbox.Items.Clear();
 
                 foreach (mod mod in ps.mods)

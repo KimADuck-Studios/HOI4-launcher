@@ -13,7 +13,6 @@ namespace hoi4_launcher
 {
     public partial class Form1 : Form
     {
-
         public void init()
         {
             try
@@ -54,11 +53,12 @@ namespace hoi4_launcher
                 }
                 else
                 {
-                    getWorkshopLoc(); // file exists, but location not set
+                    getWorkshopLoc(); 
                 }
 
                 hoi4_exe_location_textbox.Text = exeLocation;
                 hoi4_location_textbox.Text = folderLocation;
+                workshop_folder_textbox.Text = workshopLocation;
             }
             else
             {
@@ -68,7 +68,8 @@ namespace hoi4_launcher
                 ini = new IniFile("settings/.ini");
 
                 getLocationOfFolder();
-                getExeLoc(); // file exists, but location not set
+                getExeLoc();
+                getWorkshopLoc();
             }
 
             loadMods(false);
@@ -177,6 +178,11 @@ namespace hoi4_launcher
         private void hoi4_exe_location_button_Click(object sender, EventArgs e)
         {
             getExeLoc();
+        }
+
+        private void workshop_folder_button_Click(object sender, System.EventArgs e)
+        {
+            getWorkshopLoc();
         }
     }
 }
