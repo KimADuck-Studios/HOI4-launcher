@@ -106,9 +106,9 @@ namespace hoi4_launcher
                         File.WriteAllLines($"{folderLocation}/mod/ugc_{directory.Split(Path.DirectorySeparatorChar).Last()}.mod", newDescriptor);
                         count++;
                     }
-                    catch
+                    catch (ArgumentException error)
                     {
-
+                        MessageBox.Show($"{error.ParamName}\n{error.Message}");
                     }
                 }
             }

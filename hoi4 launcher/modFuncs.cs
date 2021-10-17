@@ -121,7 +121,8 @@ namespace hoi4_launcher
             try
             {
                 string modName = new_mod_name_textbox.Text;
-                string boiler = File.ReadAllText("settings/.modBoilerPlate");
+                string boiler = "version=\"0.1\"\ntags = {\n\n}\nname = \"MOD_NAME\"\npath = \"MOD_PATH\"";
+                // = File.ReadAllText("settings/.modBoilerPlate");
 
                 string toWrite = boiler.Replace("MOD_NAME", modName);
                 string myfolderLocation = folderLocation.Replace("\\", "\\\\");

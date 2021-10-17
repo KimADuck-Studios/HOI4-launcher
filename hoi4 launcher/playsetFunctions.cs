@@ -33,7 +33,7 @@ namespace hoi4_launcher
                     }
                     catch
                     {
-                        // MessageBox.Show($"Invalid mod found in saved playset file: '{line}'.");
+
                     }
                 }
             }
